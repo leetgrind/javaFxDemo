@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,6 +17,14 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
 
+        gridPane(stage);
+    }
+
+    public static void main(String[] args) {
+        launch();
+    }
+
+    public static void flowPane(Stage stage) {
         FlowPane pane = new FlowPane();
         pane.setPadding(new Insets(11, 12, 13, 14));
         pane.setHgap(5);
@@ -24,25 +33,35 @@ public class HelloApplication extends Application {
         pane.getChildren().add(new Label("First Name:"));
         pane.getChildren().add(new TextField());
         pane.getChildren().add(new Label("MI:"));
-        pane.getChildren().add(new TextField());
+        TextField miTf = new TextField();
+        miTf.setPrefColumnCount(1);
+        pane.getChildren().add(miTf);
         pane.getChildren().add(new Label("Last Name:"));
         pane.getChildren().add(new TextField());
-
-
-
 
         Scene scene = new Scene(pane, 320, 240);
         stage.setTitle("Flow Pane Demo");
         stage.setScene(scene);
-
-
-        //Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        //stage.setTitle("Hello!");
-        //stage.setScene(scene);
         stage.show();
     }
 
-    public static void main(String[] args) {
-        launch();
+    public static void gridPane(Stage stage) {
+
+        GridPane gridPane = new GridPane();
+        gridPane.setPadding(new Insets(10, 10, 10, 10));
+        gridPane.setHgap(5.5);
+        gridPane.setVgap(5.5);
+
+        gridPane.add(new Label("First Name"),0,0);
+        gridPane.add(new TextField(), 1, 0);
+        gridPane.add(new Label("MI:"), 0, 1);
+        gridPane.add(new TextField(), 1, 1);
+        gridPane.add(new Label("Last Name:"), 0, 2);
+        gridPane.add(new TextField(), 1, 2);
+
+        Scene scene = new Scene(gridPane, 320, 240);
+        stage.setTitle("Grid Pane Demo");
+        stage.setScene(scene);
+        stage.show();
     }
 }
