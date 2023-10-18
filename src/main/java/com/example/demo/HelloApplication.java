@@ -8,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,7 +19,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
 
-        gridPane(stage);
+        rectangleDemo(stage);
     }
 
     public static void main(String[] args) {
@@ -63,5 +65,21 @@ public class HelloApplication extends Application {
         stage.setTitle("Grid Pane Demo");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static void rectangleDemo(Stage stage) {
+
+        Rectangle rectangle = new Rectangle(25, 10, Color.BLACK);
+        rectangle.setStroke(Color.RED);
+
+        FlowPane pane = new FlowPane();
+
+        pane.getChildren().add(rectangle);
+
+        Scene scene = new Scene(pane, 320, 240);
+        stage.setTitle("Flow Pane Demo");
+        stage.setScene(scene);
+        stage.show();
+
     }
 }
