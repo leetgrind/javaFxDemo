@@ -4,10 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -61,8 +58,8 @@ public class HelloApplication extends Application {
 
         Button submitBtn = new Button();
         submitBtn.setText("Submit");
-        //SubmitBtnHandler btnHandler = new SubmitBtnHandler();
-        //submitBtn.setOnAction(btnHandler);
+        // SubmitBtnHandler btnHandler = new SubmitBtnHandler();
+        // submitBtn.setOnAction(btnHandler);
         submitBtn.setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Alert!");
@@ -76,16 +73,22 @@ public class HelloApplication extends Application {
             txtFirstName.setText("");
         });
 
+        TextArea textArea = new TextArea();
+        textArea.setPrefColumnCount(8);
+        textArea.setPrefRowCount(3);
+
         gridPane.add(lblFirstName,0,0);
         gridPane.add(txtFirstName, 1, 0);
         gridPane.add(new Label("MI:"), 0, 1);
         gridPane.add(new TextField(), 1, 1);
         gridPane.add(new Label("Last Name:"), 0, 2);
         gridPane.add(new TextField(), 1, 2);
-        gridPane.add(submitBtn, 0, 3);
-        gridPane.add(resetBtn, 1, 3);
+        gridPane.add(new Label("Description:"), 0, 3);
+        gridPane.add(textArea, 0, 4);
+        gridPane.add(submitBtn, 0, 5);
+        gridPane.add(resetBtn, 1, 5);
 
-        Scene scene = new Scene(gridPane, 320, 240);
+        Scene scene = new Scene(gridPane, 400, 400);
         stage.setTitle("Grid Pane Demo");
         stage.setScene(scene);
         stage.show();
