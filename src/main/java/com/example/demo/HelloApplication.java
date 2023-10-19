@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
@@ -19,7 +20,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
 
-        rectangleDemo(stage);
+        gridPane(stage);
     }
 
     public static void main(String[] args) {
@@ -54,12 +55,18 @@ public class HelloApplication extends Application {
         gridPane.setHgap(5.5);
         gridPane.setVgap(5.5);
 
+        Button submitBtn = new Button();
+        submitBtn.setText("Submit");
+        SubmitBtnHandler btnHandler = new SubmitBtnHandler();
+        submitBtn.setOnAction(btnHandler);
+
         gridPane.add(new Label("First Name"),0,0);
         gridPane.add(new TextField(), 1, 0);
         gridPane.add(new Label("MI:"), 0, 1);
         gridPane.add(new TextField(), 1, 1);
         gridPane.add(new Label("Last Name:"), 0, 2);
         gridPane.add(new TextField(), 1, 2);
+        gridPane.add(submitBtn, 1, 3);
 
         Scene scene = new Scene(gridPane, 320, 240);
         stage.setTitle("Grid Pane Demo");
