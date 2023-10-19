@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -55,18 +56,34 @@ public class HelloApplication extends Application {
         gridPane.setHgap(5.5);
         gridPane.setVgap(5.5);
 
+        TextField txtFirstName = new TextField();
+        Label lblFirstName = new Label("First Name: ");
+
         Button submitBtn = new Button();
         submitBtn.setText("Submit");
-        SubmitBtnHandler btnHandler = new SubmitBtnHandler();
-        submitBtn.setOnAction(btnHandler);
+        //SubmitBtnHandler btnHandler = new SubmitBtnHandler();
+        //submitBtn.setOnAction(btnHandler);
+        submitBtn.setOnAction(event -> {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Alert!");
+            alert.setContentText("Submit Button clicked");
+            alert.show();
+        });
 
-        gridPane.add(new Label("First Name"),0,0);
-        gridPane.add(new TextField(), 1, 0);
+        Button resetBtn = new Button();
+        resetBtn.setText("Reset");
+        resetBtn.setOnAction(event -> {
+            txtFirstName.setText("");
+        });
+
+        gridPane.add(lblFirstName,0,0);
+        gridPane.add(txtFirstName, 1, 0);
         gridPane.add(new Label("MI:"), 0, 1);
         gridPane.add(new TextField(), 1, 1);
         gridPane.add(new Label("Last Name:"), 0, 2);
         gridPane.add(new TextField(), 1, 2);
-        gridPane.add(submitBtn, 1, 3);
+        gridPane.add(submitBtn, 0, 3);
+        gridPane.add(resetBtn, 1, 3);
 
         Scene scene = new Scene(gridPane, 320, 240);
         stage.setTitle("Grid Pane Demo");
